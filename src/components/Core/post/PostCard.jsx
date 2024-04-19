@@ -46,12 +46,12 @@ const PostCard = ({ post }) => {
         <div className="flex gap-2">
           <div>
             <Link to={`/post/${post._id}`} className="hover:text-blue-500">
-              <h2 className="text-xl font-semibold mb-4">
+              <h2 className="text-xl font-semibold mb-4 max-sm:text-sm">
                 {shortenTitle(title)}
               </h2>
             </Link>
 
-            <p className="text-base text-gray-700 ">
+            <p className="text-base text-gray-700 max-sm:text-xs">
               {shortenContent(content)}
             </p>
           </div>
