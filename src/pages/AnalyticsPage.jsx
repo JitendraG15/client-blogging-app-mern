@@ -83,7 +83,7 @@ const Analytics = () => {
             {/* <h1 className="text-2xl font-semibold mb-4">Dashboard</h1> */}
             <div className="bg-white p-4 rounded-lg shadow-md">
               {/* Main content goes here */}
-              <p className="text-center text-2xl">Blog Statistics</p>
+              <p className="text-center text-2xl">Basic Blog Statistics</p>
 
               <div className="flex pt-10">
                 <CategoryData post={post} />
