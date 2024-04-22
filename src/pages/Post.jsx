@@ -39,13 +39,13 @@ const PostDetail = () => {
   }, [dispatch, postId]);
 
   return (
-    <div className="container p-4 w-[95%] md:w-[50%] mx-auto pt-16">
+    <div className="container p-4 w-[95%] md:w-[50%] mx-auto pt-12 ">
       {currentPost && currentPost.title ? (
         <>
           {/* Display the post details */}
-          <h2 className="text-xl font-semibold mb-2">{currentPost.title}</h2>
+          <h2 className="text-xl font-semibold mb-2 max-sm:text-md">{currentPost.title}</h2>
 
-          <div className="text-gray-600 mb-4 flex items-center justify-between bg-gray-100 rounded  gap-2  p-2">
+          <div className="text-gray-600 mb-4 flex items-center justify-between  rounded  gap-2  p-2">
             <div className="flex gap-2 items-center ">
               <span className="border-2 rounded-[50%] border-blue-500 text-3xl p-1">
                 <img
@@ -70,12 +70,12 @@ const PostDetail = () => {
                   : "NA"}{" "}
                 min read
               </span>
-              <span className="text-xl"> 🎯</span>
-              <span className="text-xs">
+              <span className="text-xl max-sm:hidden"> 🎯</span>
+              <span className="text-xs max-sm:hidden">
                 Published On :{" "}
                 {new Date(currentPost.createdAt).toLocaleDateString()}
               </span>
-              <span className="text-xl"> 🎯</span>
+              <span className="text-xl max-sm:hidden"> 🎯</span>
               <span className="text-xs">
                 <ShareComponent />
               </span>

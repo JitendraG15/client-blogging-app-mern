@@ -61,7 +61,7 @@ const PostCard = ({ post }) => {
               <img
                 src={post.thumbnail}
                 alt="Thumbnail"
-                className="h-[150px] min-w-[200px] max-w-[200px] max-sm:max-w-[100px] max-sm:max-h-[150px] rounded"
+                className="h-[150px] min-w-[200px] max-w-[200px] max-sm:hidden  rounded"
               />
             ) : (
               <img
