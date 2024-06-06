@@ -1,13 +1,11 @@
-import React, { useState } from "react";
-import Postrow from "../components/Core/post/PostRow";
-import { useSelector } from "react-redux";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { fetchMyPosts } from "../services/operations/profile";
 import { deletePost } from "../services/operations/post";
-import post, { setCurrentPost } from "../slices/post";
+import { setCurrentPost } from "../slices/post";
 import { useNavigate } from "react-router-dom";
 import LoadingSpinner from "../components/comman/Spinner";
+import PostRow from "../components/Core/post/PostRow";
 
 const MyPosts = () => {
   const { currentPost } = useSelector((state) => state.post);
@@ -31,12 +29,12 @@ const MyPosts = () => {
 
   useEffect(() => {
     dispatch(fetchMyPosts({ userID }));
-  }, []);
+  }, [dispatch, userID]);
 
   return (
     <>
       {!loading ? (
-        <table className="w-11/12  mx-auto mt-24 bg-white border-collapse border border-gray-300 rounded-lg overflow-hidden">
+        <table className="w-11/12 mx-auto mt-24 bg-white border-collapse border border-gray-300 rounded-lg overflow-hidden">
           <thead className="bg-gray-200 text-gray-700">
             <tr>
               <th className="px-4 py-2">Title</th>
@@ -46,14 +44,22 @@ const MyPosts = () => {
             </tr>
           </thead>
           <tbody className="text-gray-600">
-            {myPosts.length > 0 ? myPosts.map((post) => (
-              <Postrow
-                key={post._id}
-                post={post}
-                onEdit={() => handleEdit(post)}
-                onDelete={() => handleDelete(post._id)}
-              />
-            )):<div className="text-center my-10">No Posts</div>}
+            {myPosts.length > 0 ? (
+              myPosts.map((post) => (
+                <PostRow
+                  key={post._id}
+                  post={post}
+                  onEdit={() => handleEdit(post)}
+                  onDelete={() => handleDelete(post._id)}
+                />
+              ))
+            ) : (
+              <tr>
+                <td className="px-4 py-2" colSpan="4">
+                  No Posts
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       ) : (

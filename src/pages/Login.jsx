@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import {login} from "../services/operations/auth"
-import {useSelector} from "react-redux"
+import { login } from '../services/operations/auth';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -9,14 +8,16 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle login logic here
-    console.log('Email:', email);
-    console.log('Password:', password);
-    dispatch(login(email, password, navigate));
 
+    try {
+      await dispatch(login(email, password, navigate));
+    } catch (error) {
+      setErrorMessage('Invalid email or password. Please try again.');
+    }
   };
 
   return (
@@ -36,6 +37,7 @@ const LoginPage = () => {
               onChange={(e) => setEmail(e.target.value)}
               className="mt-1 p-2 w-full border rounded-md"
               required
+              autoComplete="email"
             />
           </div>
           <div className="mb-4">
@@ -50,8 +52,10 @@ const LoginPage = () => {
               onChange={(e) => setPassword(e.target.value)}
               className="mt-1 p-2 w-full border rounded-md"
               required
+              autoComplete="current-password"
             />
           </div>
+          {errorMessage && <p className="text-red-500 mb-4">{errorMessage}</p>}
           <div className="flex justify-end">
             <button
               type="submit"

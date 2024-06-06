@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPosts } from "../services/operations/post";
 import PostRow from "../components/Core/post/PostRow";
@@ -19,7 +18,6 @@ const CMS = () => {
   const [blogs, setBlogs] = useState(post);
 
   const [selectedCategory, setSelectedCategory] = useState("all");
-  //   const { currentPost } = useSelector((state) => state.post);
   const { token } = useSelector((state) => state.auth);
   const { user } = useSelector((state) => state.profile);
 
@@ -32,12 +30,10 @@ const CMS = () => {
 
   const handleEdit = (post) => {
     dispatch(setCurrentPost(post));
-    console.log(`Editing post with ID: ${post._id}`);
     navigate("/dashboard/editPost");
   };
 
   const handleDelete = (postId) => {
-    console.log(`Deleting post with ID: ${postId}`);
     dispatch(deletePost(token, postId));
     dispatch(fetchMyPosts({ userID }));
   };
@@ -59,19 +55,16 @@ const CMS = () => {
 
   return (
     <>
-      {post.length > 0 ? (
+      {loading ? (
+        <LoadingSpinner />
+      ) : (
         <div className="flex">
           <Sidebar />
-          <div className=" w-screen mx-auto mt-1 p-2 ">
-            {/* <h1 className="text-2xl font-semibold mb-4">Dashboard</h1> */}
+          <div className="w-screen mx-auto mt-1 p-2">
             <div className="bg-white p-4 rounded-lg shadow-md">
-              {/* Main content goes here */}
               <p className="text-center text-2xl">Content Management System</p>
-
               <div className="container mx-auto px-4 py-8">
                 <h1 className="text-3xl font-bold mb-6">Content Management</h1>
-
-                {/* Category Filter */}
                 <div className="mb-4">
                   <label
                     htmlFor="category"
@@ -86,16 +79,12 @@ const CMS = () => {
                     className="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   >
                     <option value="all">All</option>
-
                     <option value="Artificial Inteligence">AI</option>
                     <option value="Computer Network">Computer Network</option>
                     <option value="Cyber Security">Cyber Security</option>
                   </select>
                 </div>
-
-                {/* Blog Cards */}
-
-                <table className="w-full mx-auto  bg-white border-collapse border border-gray-300 rounded-lg overflow-hidden">
+                <table className="w-full mx-auto bg-white border-collapse border border-gray-300 rounded-lg overflow-hidden">
                   <thead className="bg-gray-200 text-gray-700">
                     <tr>
                       <th className="px-4 py-2">Title</th>
@@ -119,8 +108,6 @@ const CMS = () => {
             </div>
           </div>
         </div>
-      ) : (
-        <LoadingSpinner />
       )}
     </>
   );

@@ -9,29 +9,25 @@ const CreatePostPage = () => {
   const { token } = useSelector((state) => state.auth);
   const { user } = useSelector((state) => state.profile);
   const { category } = useSelector((state) => state.category);
-  const { thumbnail } = useSelector((state) => state.post);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const {token}
+  
   const [title, setTitle] = useState("");
-  // const [thumbnail, setThumbnail] = useState("");
   const [categoryID, setCategoryID] = useState("");
   const [content, setContent] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
     console.log("Form Data:", {
       userID: user._id,
       token,
       title,
-      thumbnail,
       categoryID,
       content,
     });
     const userID = user._id;
     dispatch(
-      createPost(userID, token, title, thumbnail, categoryID, content, navigate)
+      createPost(userID, token, title, categoryID, content, navigate)
     );
     setTitle("");
     setCategoryID("");
@@ -90,24 +86,6 @@ const CreatePostPage = () => {
               required
             />
           </div>
-          {/* <div className="mb-4">
-            <label
-              htmlFor="thumbnail"
-              className="block text-sm font-medium text-gray-600"
-            >
-              {thumbnail}
-            </label>
-            <input
-            disabled
-              type="text"
-              id="thumbnail"
-              name="thumbnail"
-              value={thumbnail}
-              // onChange={(e) => setThumbnail(e.target.value)}
-              className="mt-1 p-2 w-full border rounded-md"
-              required
-            />
-          </div> */}
 
           <div className="mb-4">
             <label

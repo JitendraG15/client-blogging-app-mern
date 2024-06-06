@@ -42,13 +42,15 @@ const CommentData = ({ post }) => {
       .append("g")
       .attr("transform", `translate(${margin.left},${height + margin.top})`)
       .call(xAxis)
+      .attr("aria-hidden", "true")
       .selectAll("text")
       .remove(); // Remove text labels from x-axis
 
     svg
       .append("g")
       .attr("transform", `translate(${margin.left},${margin.top})`)
-      .call(yAxis);
+      .call(yAxis)
+      .attr("aria-hidden", "true");
 
     svg
       .selectAll(".bar")
@@ -66,9 +68,11 @@ const CommentData = ({ post }) => {
   }, [post]);
 
   return (
-    <div className="mx-auto  ">
-      <h1 className="text-2xl py-2 ">Number of Comments per Post</h1>
-      <svg ref={svgRef} width={600} height={400}></svg>
+    <div className="mx-auto" role="img" aria-labelledby="chart-title">
+      <svg ref={svgRef} width={600} height={400} aria-hidden="true"></svg>
+      <h1 id="chart-title" className="text-lg py-2 px-10">
+        <strong>Fig:</strong> Number of Comments per Post
+      </h1>
     </div>
   );
 };

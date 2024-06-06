@@ -81,6 +81,7 @@ const EditPost = () => {
             onChange={handleInputChange}
             disabled={!editing}
             className="mt-1 p-2 w-full border rounded-md"
+            aria-disabled={!editing}
           />
         </div>
         <div className="mb-4">
@@ -97,6 +98,7 @@ const EditPost = () => {
             onChange={handleInputChange}
             disabled={!editing}
             className="mt-1 p-2 w-full border rounded-md"
+            aria-disabled={!editing}
           >
             <option value={currentPost.category._id}>
               {currentPost.category.categoryName}
@@ -123,6 +125,7 @@ const EditPost = () => {
             onChange={handleInputChange}
             disabled={!editing}
             className="mt-1 p-2 w-full h-[35vh] max-sm:min-h-[50vh] border rounded-md"
+            aria-disabled={!editing}
           ></textarea>
         </div>
         <div className="flex justify-between">

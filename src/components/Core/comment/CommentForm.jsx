@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { createComment } from "../../../services/operations/comment";
-import { fetchPost } from "../../../services/operations/post";
+import { useDispatch, useSelector } from "react-redux";
+import { createComment, fetchComments } from "../../../services/operations/comment";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 
-const CommentForm = (postID) => {
+const CommentForm = ({ postID }) => {
   const { user } = useSelector((state) => state.profile);
+  const { comments, loading } = useSelector((state) => state.comment);
   const profileURL = user.image;
   const [commentText, setCommentText] = useState("");
   const dispatch = useDispatch();
@@ -15,7 +14,7 @@ const CommentForm = (postID) => {
   const handleInputChange = (e) => {
     setCommentText(e.target.value);
     const lineCount = (e.target.value.match(/\n/g) || []).length + 1;
-    e.target.rows = lineCount; // Set a minimum of 5 rows
+    e.target.rows = Math.max(lineCount, 5); // Ensure at least 5 rows
   };
 
   const handleSubmit = (e) => {
@@ -26,46 +25,50 @@ const CommentForm = (postID) => {
     }
 
     // Dispatch action to add comment to post
-    dispatch(createComment(user._id, postID.postID, commentText, navigate));
-    dispatch(fetchPost(postID.postID));
-    window.location.reload();
+    dispatch(createComment(user._id, postID, commentText, navigate));
+    dispatch(fetchComments(postID));
 
     // Clear the comment input field
     setCommentText("");
   };
 
   return (
-    <div className="container  mx-auto p-4">
-      <form onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700 pb-4">
-            Add a comment
-          </label>
-
-          <div className="flex items-start justify-center gap-5">
-            <div className="border-2 rounded-[50%] border-blue-500 text-3xl p-1">
-              {" "}
-              <img
-                src={profileURL}
-                alt="Profile Image"
-                className="rounded-[50%] w-[40px]"
-              />
+    <div className="container mx-auto p-4">
+      {!loading ? (
+        <form onSubmit={handleSubmit}>
+          <div className="mb-4">
+            <label htmlFor="comment" className="block text-sm font-medium text-gray-700 pb-4">
+              Add a comment
+            </label>
+            <div className="flex items-start justify-center gap-5">
+              <div className="border-2 rounded-full border-blue-500 text-3xl p-1">
+                <img
+                  src={profileURL}
+                  alt={`${user.name}'s profile`}
+                  className="rounded-full w-[40px]"
+                />
+              </div>
+              <textarea
+                id="comment"
+                className="mt-1 p-2 w-full border-b-2 rounded-md"
+                rows="5"
+                value={commentText}
+                onChange={handleInputChange}
+                aria-label="Write your comment here"
+              ></textarea>
             </div>
-            <textarea
-              className="mt-1 p-2 w-full border-b-2 rounded-md"
-              rows="1"
-              value={commentText}
-              onChange={handleInputChange}
-            ></textarea>
           </div>
-        </div>
-        <button
-          type="submit"
-          className="bg-blue-500 text-white px-4 py-2 ml-16 rounded-md"
-        >
-          Submit
-        </button>
-      </form>
+          <button
+            type="submit"
+            className="bg-blue-500 text-white px-4 py-2 ml-16 rounded-md"
+            aria-label="Submit your comment"
+          >
+            Submit
+          </button>
+        </form>
+      ) : (
+        <div>Loading...</div>
+      )}
     </div>
   );
 };

@@ -18,14 +18,18 @@ const Postrow = ({ post, onEdit, onDelete }) => {
             <button
               onClick={() => onEdit(post)}
               className="text-blue-500 hover:text-blue-700 text-3xl font-bold py-2 px-4 rounded"
+              aria-label={`Edit post titled ${post.title}`}
+              tabIndex="0"
             >
-              <CiEdit />
+              <CiEdit aria-hidden="true" />
             </button>
             <button
               onClick={() => onDelete(post._id)}
               className="text-red-500 hover:text-red-700 text-3xl font-bold py-2 px-4 rounded"
+              aria-label={`Delete post titled ${post.title}`}
+              tabIndex="0"
             >
-              <MdDeleteOutline />
+              <MdDeleteOutline aria-hidden="true" />
             </button>
           </td>
         </tr>

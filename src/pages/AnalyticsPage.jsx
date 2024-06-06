@@ -6,6 +6,7 @@ import CategoryData from "../components/charts/CategoryGraph";
 import CommentData from "../components/charts/CommentData";
 import Sidebar from "../components/comman/Sidebar";
 import LoadingSpinner from "../components/comman/Spinner";
+// import DataTableComponent from "../components/charts/DataTableComponent";
 
 const Analytics = () => {
   const dispatch = useDispatch();
@@ -77,20 +78,23 @@ const Analytics = () => {
   return (
     <>
       {post.length > 0 ? (
-        <div className="flex">
+        <div className="flex ">
           <Sidebar />
           <div className=" w-screen mx-auto mt-1 p-2 ">
             {/* <h1 className="text-2xl font-semibold mb-4">Dashboard</h1> */}
-            <div className="bg-white p-4 rounded-lg shadow-md">
+            <div className=" p-4 rounded-lg ">
               {/* Main content goes here */}
-              <p className="text-center text-2xl">Basic Blog Statistics</p>
+              <p className="text-center text-3xl mb-10">Basic Blog Statistics</p>
 
-              <div className="flex pt-10">
+              <div className="flex pt-10 max-sm:flex-col">
                 <CategoryData post={post} />
 
                 <CommentData post={post} />
               </div>
+              {/* <DataTableComponent data={post} /> */}
             </div>
+
+            <hr></hr>
           </div>
         </div>
       ) : (

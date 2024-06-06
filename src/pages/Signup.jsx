@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-const { signup } = require("../services/operations/auth");
+import { signup } from "../services/operations/auth";
 
 function Signup() {
   const dispatch = useDispatch();
@@ -13,7 +13,7 @@ function Signup() {
     confirmPassword: "",
   });
 
-  const [isMatch, setIsMathch] = useState(false);
+  const [isMatch, setIsMatch] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,28 +30,22 @@ function Signup() {
       [name]: value,
     }));
 
-    formData.password === value ? setIsMathch(true) : setIsMathch(false);
+    setIsMatch(formData.password === value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
     console.log("Form Data:", formData);
-    dispatch(
-      signup(formData.name, formData.email, formData.password, navigate)
-    );
+    dispatch(signup(formData.name, formData.email, formData.password, navigate));
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
-        <h2 className="text-2xl font-semibold mb-4 ">Sign Up</h2>
+        <h2 className="text-2xl font-semibold mb-4">Sign Up</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label
-              htmlFor="name"
-              className="block text-sm font-medium text-gray-600"
-            >
+            <label htmlFor="name" className="block text-sm font-medium text-gray-600">
               Name
             </label>
             <input
@@ -65,10 +59,7 @@ function Signup() {
             />
           </div>
           <div className="mb-4">
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-600"
-            >
+            <label htmlFor="email" className="block text-sm font-medium text-gray-600">
               Email
             </label>
             <input
@@ -82,10 +73,7 @@ function Signup() {
             />
           </div>
           <div className="mb-4">
-            <label
-              htmlFor="password"
-              className="block text-sm font-medium text-gray-600"
-            >
+            <label htmlFor="password" className="block text-sm font-medium text-gray-600">
               Password
             </label>
             <input
@@ -99,10 +87,7 @@ function Signup() {
             />
           </div>
           <div className="mb-6">
-            <label
-              htmlFor="confirmPassword"
-              className="block text-sm font-medium text-gray-600"
-            >
+            <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-600">
               Confirm Password
             </label>
             <input
@@ -112,7 +97,7 @@ function Signup() {
               value={formData.confirmPassword}
               onChange={handleConfirmPasswordChange}
               className={`${
-                isMatch ? "text-green-500" : "text-red-500"
+                isMatch ? "border-green-500" : "border-red-500"
               } mt-1 p-2 w-full border rounded-md`}
               required
             />

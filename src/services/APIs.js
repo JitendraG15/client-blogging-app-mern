@@ -9,34 +9,37 @@ export const endpoints = {
 // Post
 
 export const postEndpoints = {
-  CreatePost: BASE_URL + "/post/createPost",
-  FetchPost: BASE_URL + "/post/fetchPost",
-  FetchPosts: BASE_URL + "/post/fetchPosts",
-  FetchCategoryPosts: BASE_URL + "/post/fetchCategoryPosts",
-  UpdatePost : BASE_URL + "/post/updatePost",
-  DeletePost : BASE_URL + "/post/deletePost"
+  CreatePost: BASE_URL + "/post/create",
+  FetchPost: BASE_URL + "/post/fetch",
+  FetchPosts: BASE_URL + "/post/fetch-all",
+  FetchCategoryPosts: BASE_URL + "/post/fetch-category-posts",
+  UpdatePost : BASE_URL + "/post/update",
+  DeletePost : BASE_URL + "/post/delete"
 };
 
 // Category
 
 export const categoryEndpoints = {
-  FetchCategory: BASE_URL + "/category/fetchCategory",
+  FetchCategory: BASE_URL + "/category/fetch",
 };
 
 // Comments
 
 export const commentEndpoints = {
-  CreateComment: BASE_URL + "/comment/createComment",
+  CreateComment: BASE_URL + "/comment/create",
+  FetchComment: BASE_URL + "/comment/get",
+  UpdateComment:BASE_URL + "/comment/update",
+  DeleteComment: BASE_URL + "/comment/delete"
 };
 
 // Uploads
 export const uploadEndpoints = {
-  UploadImage: BASE_URL + "/upload/uploadImage",
-  UpdateProfile : BASE_URL + "/upload/updateProfileImage"
+  UploadImage: BASE_URL + "/upload/image",
+  UpdateProfile : BASE_URL + "/upload/update-profile-image"
 };
 
 // Profile APIs
 
 export const profileEndpoints = {
-  FetchMyPosts: BASE_URL + "/myprofile/fetchmyposts",
+  FetchMyPosts: BASE_URL + "/profile/my-posts",
 };

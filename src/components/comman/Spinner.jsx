@@ -2,7 +2,12 @@ import React from "react";
 
 const LoadingSpinner = () => {
   return (
-    <div className="flex items-center justify-center h-screen flex-col gap-4">
+    <div
+      className="flex items-center justify-center h-screen flex-col gap-4"
+      role="alert"
+      aria-live="assertive"
+      aria-busy="true"
+    >
       <div
         className="w-10 h-10 ring-offset-1 ring-2 border-8 border-transparent rounded-full animate-spin"
         style={{

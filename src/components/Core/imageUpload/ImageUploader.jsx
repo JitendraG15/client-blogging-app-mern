@@ -42,11 +42,14 @@ const ImageUploader = () => {
         type="file"
         onChange={handleImageChange}
         className="border p-2 mb-4"
+        aria-label="Select an image to upload"
       />
 
       <button
         onClick={handleUpload}
         className="bg-blue-500 text-white px-4 py-2 rounded"
+        aria-label="Upload selected image"
+        tabIndex="0"
       >
         Upload
       </button>
@@ -57,7 +60,7 @@ const ImageUploader = () => {
         </div>
       )}
 
-      {error && <p className="text-red-500 mt-4">{error}</p>}
+      {error && <p className="text-red-500 mt-4" role="alert">{error}</p>}
     </div>
   );
 };

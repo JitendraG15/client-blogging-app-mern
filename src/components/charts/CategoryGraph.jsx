@@ -46,12 +46,14 @@ const CategoryData = ({ post }) => {
     svg
       .append("g")
       .attr("transform", `translate(${margin.left},${height + margin.top})`)
-      .call(xAxis);
+      .call(xAxis)
+      .attr("aria-hidden", "true");
 
     svg
       .append("g")
       .attr("transform", `translate(${margin.left},${margin.top})`)
-      .call(yAxis);
+      .call(yAxis)
+      .attr("aria-hidden", "true");
 
     svg
       .selectAll(".bar")
@@ -67,9 +69,9 @@ const CategoryData = ({ post }) => {
   }, [post]);
 
   return (
-    <div className=" mx-auto">
-      <h1 className="text-2xl py-2">Number of Posts per Category</h1>
-      <svg ref={svgRef} width={600} height={400}></svg>
+    <div className="mx-auto flex flex-col items-start" role="img" aria-label="Bar chart showing number of posts per category">
+      <svg ref={svgRef} width={600} height={400} aria-hidden="true"></svg>
+      <h1 className="text-lg py-2 px-10" id="chart-title"><strong>Fig:</strong> Number of Posts per Category</h1>
     </div>
   );
 };

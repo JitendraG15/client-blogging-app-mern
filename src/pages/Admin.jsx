@@ -1,6 +1,6 @@
 import React from "react";
 import Sidebar from "../components/comman/Sidebar";
-import LinePlot from "../components/charts/LinePlot";
+// import LinePlot from "../components/charts/LinePlot";
 import ProfilePage from "./ProfilePage";
 
 const AdminPage = () => {
@@ -14,7 +14,7 @@ const AdminPage = () => {
   return (
     <div className="flex">
       <Sidebar />
-      <div className=" w-screen mx-auto mt-1 p-8 border-2 border-red-500">
+      <div className=" w-screen mx-auto mt-1 p-8 border-2 ">
         {/* <h1 className="text-2xl font-semibold mb-4">Dashboard</h1> */}
         <div className="bg-white p-4 rounded-lg shadow-md">
           {/* Main content goes here */}
