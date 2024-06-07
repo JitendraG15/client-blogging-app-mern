@@ -1,11 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import Modify from "./Modify";
 
 const Comment = ({ comment }) => {
   const { user } = useSelector((state) => state.profile);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-  const handleClick = () => {
-    // Define handleClick logic here
+  const handlePopupOpen = () => {
+    setIsPopupOpen(true);
+  };
+
+  const handlePopupClose = () => {
+    setIsPopupOpen(false);
+  };
+
+  const handleModify = (commentId) => {
+    // Logic to modify the comment
+    // Example: dispatch an action to update the comment
+    console.log(`Modify comment with ID: ${commentId}`);
+    setIsPopupOpen(false);
+  };
+
+  const handleDelete = (commentId) => {
+    // Logic to delete the comment
+    // Example: dispatch an action to delete the comment
+    console.log(`Delete comment with ID: ${commentId}`);
+    setIsPopupOpen(false);
   };
 
   return (
@@ -37,7 +57,7 @@ const Comment = ({ comment }) => {
         {user && user._id === comment.userID._id ? (
           <button
             className="text-3xl -mt-4 px-5"
-            onClick={handleClick}
+            onClick={handlePopupOpen}
             aria-label="Edit or delete comment"
             tabIndex="0"
           >
@@ -45,6 +65,15 @@ const Comment = ({ comment }) => {
           </button>
         ) : null}
       </div>
+
+      {isPopupOpen && (
+        <Modify
+          comment={comment}
+          onClose={handlePopupClose}
+          onModify={handleModify}
+          onDelete={handleDelete}
+        />
+      )}
     </div>
   );
 };
