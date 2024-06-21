@@ -8,8 +8,8 @@ const {CreateComment,FetchComment, UpdateComment, DeleteComment} = commentEndpoi
 // API For doing comment
 export function createComment(userID, postID, content, navigate) {
     return async (dispatch) => {
-    //   const toastId = toast.loading("Loading...");
-      // dispatch(setLoading(true))
+      const toastId = toast.loading("Loading...");
+      dispatch(setLoading(true))
       console.log(userID, postID, content);
       try {
         
@@ -19,6 +19,7 @@ export function createComment(userID, postID, content, navigate) {
         console.log("create comment API RESPONSE............", response);
   
         console.log(response.data.success);
+        dispatch(setComments(response.data.comments))
   
         if (!response.data.success) {
           throw new Error(response.data.message);
@@ -31,8 +32,8 @@ export function createComment(userID, postID, content, navigate) {
         console.log("create comment API ERROR............", error);
         toast.error(error.response.data.message);
       }
-      // dispatch(setLoading(false))
-      // toast.dismiss(toastId);
+      dispatch(setLoading(false))
+      toast.dismiss(toastId);
     };
   }
 
@@ -69,61 +70,65 @@ export function fetchComments(post_id) {
 }
 
   // API for updating a comment
-  export function updateComment(userID, postID,commentID,content, navigate) {
+  export function updateComment(postID,commentID,content, navigate) {
     return async (dispatch) => {
-    //   const toastId = toast.loading("Loading...");
-      // dispatch(setLoading(true))
+      const toastId = toast.loading("Loading...");
+      dispatch(setLoading(true))
       // console.log(userID, postID, content);
       try {
         
-        const response = await apiConnector("PUT", updateComment + `?userID=${userID}&postID=${postID}&commentID=${commentID}`, {
+        const response = await apiConnector("PUT", UpdateComment + `?commentID=${commentID}`, {
             content
         });
         console.log("create comment API RESPONSE............", response);
   
         console.log(response.data.success);
+        dispatch(setComments(response.data.comments))
+        
   
         if (!response.data.success) {
           throw new Error(response.data.message);
         }
   
         toast.success(response.data.message);
-        navigate(`/post/${postID}`)
+       
         // dispatch(setCategory(response.data.category));
       } catch (error) {
         console.log("update comment API ERROR............", error);
         toast.error(error.response.data.message);
       }
-      // dispatch(setLoading(false))
-      // toast.dismiss(toastId);
+      navigate(`/post/${postID}`);
+      dispatch(setLoading(false))
+      toast.dismiss(toastId);
     };
   }
 
   // API to delete a particular comment
-  export function deleteComment(userID, postID,commentID, navigate) {
+  export function deleteComment(commentID, navigate) {
     return async (dispatch) => {
-    //   const toastId = toast.loading("Loading...");
-      // dispatch(setLoading(true))
+      const toastId = toast.loading("Loading...");
+      dispatch(setLoading(true))
       // console.log(userID, postID, content);
       try {
         
-        const response = await apiConnector("DELETE", DeleteComment + `?userID=${userID}&postID=${postID}&commentID=${commentID}`);
+        const response = await apiConnector("DELETE", DeleteComment + `?commentID=${commentID}`);
         console.log("create comment API RESPONSE............", response);
   
         console.log(response.data.success);
+        dispatch(setComments(response.data.comments))
   
         if (!response.data.success) {
           throw new Error(response.data.message);
         }
   
         toast.success(response.data.message);
-        navigate(`/post/${postID}`)
+        // navigate(`/post/${postID}`)
         // dispatch(setCategory(response.data.category));
       } catch (error) {
         console.log("create comment API ERROR............", error);
         toast.error(error.response.data.message);
       }
-      // dispatch(setLoading(false))
-      // toast.dismiss(toastId);
+      dispatch(setLoading(false))
+      toast.dismiss(toastId);
     };
   }

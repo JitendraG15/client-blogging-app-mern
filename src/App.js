@@ -15,7 +15,7 @@ import AdminPage from "./pages/Admin";
 import Analytics from "./pages/AnalyticsPage";
 import CMS from "./pages/CMS";
 
-import { fetchMyPosts } from "./services/operations/profile";
+// import { fetchMyPosts } from "./services/operations/profile";
 import EditPost from "./pages/EditPost";
 import ProfilePage from "./pages/ProfilePage";
 import Footer from "./components/comman/Footer";
@@ -64,9 +64,6 @@ function App() {
       {/* Navbar */}
       <Navbar className="absolute top-0 left-0 w-full z-50" />
 
-     
-      
-
       {/* Content */}
       <div className="mt-16 w-full min-h-screen">
         {" "}
@@ -89,9 +86,7 @@ function App() {
         </Routes>
       </div>
 
-      {/* <Footer/> */}
-
-     
+      {/* <Footer className="" /> */}
     </div>
   );
 }

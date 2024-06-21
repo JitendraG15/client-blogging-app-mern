@@ -49,7 +49,7 @@ const Navbar = () => {
         <div className="container mx-auto flex justify-between items-center">
           {/* Logo */}
           <div className="flex items-center" id="logo-link">
-            <Link to="/" className="text-2xl font-bold  hover:text-yellow-500">
+            <Link to="/" className="text-2xl font-bold text-gray-300 hover:text-yellow-500">
               ThoughtfulThreads
             </Link>
           </div>
@@ -58,25 +58,25 @@ const Navbar = () => {
           <div className="hidden md:flex space-x-4">
             <Link
               to="/"
-              className="hover:bg-gray-700 px-3 py-2 rounded hover:text-yellow-500"
+              className="hover:bg-gray-700 px-3 py-2 rounded text-gray-300 hover:text-yellow-500"
             >
               Random
             </Link>
             <Link
               to="/ai"
-              className="hover:bg-gray-700 px-3 py-2 rounded hover:text-yellow-500"
+              className="hover:bg-gray-700 px-3 py-2 rounded text-gray-300 hover:text-yellow-500"
             >
               Artificial Intelligence
             </Link>
             <Link
               to="/cn"
-              className="hover:bg-gray-700 px-3 py-2 rounded hover:text-yellow-500"
+              className="hover:bg-gray-700 text-gray-300  px-3 py-2 rounded  hover:text-yellow-500"
             >
               Computer Network
             </Link>
             <Link
               to="/cs"
-              className="hover:bg-gray-700 px-3 py-2 rounded hover:text-yellow-500"
+              className="hover:bg-gray-700 px-3 py-2 rounded text-gray-300 hover:text-yellow-500"
             >
               Cyber Security
             </Link>
@@ -113,7 +113,7 @@ const Navbar = () => {
                   <>
                     <Link
                       to="/signup"
-                      className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                      className="block px-4 py-2 text-gray-600 hover:text-white"
                       role="menuitem"
                       tabIndex="0"
                     >
@@ -121,7 +121,7 @@ const Navbar = () => {
                     </Link>
                     <Link
                       to="/login"
-                      className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                      className="block px-4 py-2 text-gray-600 hover:text-white"
                       role="menuitem"
                       tabIndex="0"
                     >
@@ -133,7 +133,7 @@ const Navbar = () => {
                   <>
                     <Link
                       to="/dashboard"
-                      className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                      className="block px-4 py-2 text-gray-300 hover:text-white"
                       role="menuitem"
                       tabIndex="0"
                     >

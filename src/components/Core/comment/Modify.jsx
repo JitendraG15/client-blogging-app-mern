@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 
 const Modify = ({ comment, onClose, onModify, onDelete }) => {
   const [action, setAction] = useState(null);
+  const [modifiedContent, setModifiedContent] = useState(comment.content);
   const popupRef = useRef();
 
   const handleModify = () => {
@@ -24,6 +25,10 @@ const Modify = ({ comment, onClose, onModify, onDelete }) => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
+
+  const handleContentChange = (event) => {
+    setModifiedContent(event.target.value);
+  };
 
   return (
     <div
@@ -59,12 +64,13 @@ const Modify = ({ comment, onClose, onModify, onDelete }) => {
             </label>
             <textarea
               id="modify-textarea"
-              defaultValue={comment.content}
+              value={modifiedContent}
+              onChange={handleContentChange}
               className="w-full mb-2 p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-300"
               aria-label="Modify Comment"
             />
             <button
-              onClick={() => onModify(comment._id)}
+              onClick={() => onModify({ comment, content: modifiedContent })}
               className="w-full py-2 px-4 bg-blue-500 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-300"
             >
               Modify Comment

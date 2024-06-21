@@ -33,7 +33,7 @@ const Sidebar = () => {
     >
       <div className="py-4 px-6 flex items-center justify-between">
         <h2
-          className={`text-xl font-semibold ${
+          className={`text-xl text-gray-300 font-semibold ${
             isCollapsed ? "hidden" : "block"
           }`}
         >
@@ -41,17 +41,17 @@ const Sidebar = () => {
         </h2>
         <button
           onClick={toggleCollapse}
-          className="text-white focus:outline-none"
+          className="text-gray-300 focus:outline-none"
         >
           <FaBars />
         </button>
       </div>
-      <nav className="flex flex-col flex-grow">
-        <a href="/" className="py-2 px-6 flex items-center hover:bg-gray-700">
+      <nav className="flex flex-col flex-grow text-gray-300">
+        <a href="/admin" className="py-2 px-6 flex items-center hover:bg-gray-700">
           <FaHome className="mr-3" />
           <span className={`${isCollapsed ? "hidden" : "block"}`}>Home</span>
         </a>
-        <div className="flex flex-col">
+        {/* <div className="flex flex-col">
           <button
             onClick={toggleUsersMenu}
             className="py-2 px-6 flex items-center justify-between hover:bg-gray-700 focus:outline-none"
@@ -80,7 +80,7 @@ const Sidebar = () => {
               </a>
             </div>
           )}
-        </div>
+        </div> */}
 
         <a
           href="/admin/cms"
@@ -102,7 +102,7 @@ const Sidebar = () => {
           </span>
         </a>
 
-        <a
+        {/* <a
           href="/settings"
           className="py-2 px-6 flex items-center hover:bg-gray-700"
         >
@@ -110,7 +110,7 @@ const Sidebar = () => {
           <span className={`${isCollapsed ? "hidden" : "block"}`}>
             Settings
           </span>
-        </a>
+        </a> */}
       </nav>
     </div>
   );

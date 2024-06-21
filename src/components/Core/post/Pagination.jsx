@@ -35,7 +35,7 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
 
   return (
     <nav aria-label="Page navigation">
-      <ul className="pagination flex justify-center mt-4">
+      <ul className="pagination flex justify-center mt-4 pb-4">
         {/* Previous Button */}
         <li className={`page-item mx-1 ${currentPage === 1 ? 'disabled' : ''}`}>
           <button

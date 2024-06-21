@@ -84,7 +84,9 @@ const Analytics = () => {
             {/* <h1 className="text-2xl font-semibold mb-4">Dashboard</h1> */}
             <div className=" p-4 rounded-lg ">
               {/* Main content goes here */}
-              <p className="text-center text-3xl mb-10">Basic Blog Statistics</p>
+              <p className="pl-16 py-4 text-3xl mb-10 font-bold transform transition-transform duration-300 hover:scale-105 shadow-lg float-animation bg-gradient-to-r from-gray-600 via-gray-300 to-white bg-clip-text text-transparent">
+                Basic Blog Statistics
+              </p>
 
               <div className="flex pt-10 max-sm:flex-col">
                 <CategoryData post={post} />

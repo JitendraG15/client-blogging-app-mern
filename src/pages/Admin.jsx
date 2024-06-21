@@ -18,7 +18,7 @@ const AdminPage = () => {
         {/* <h1 className="text-2xl font-semibold mb-4">Dashboard</h1> */}
         <div className="bg-white p-4 rounded-lg shadow-md">
           {/* Main content goes here */}
-          <p className="text-center text-2xl">Welcome to the Admin Panel!</p>
+         
           
           <ProfilePage/>
         </div>

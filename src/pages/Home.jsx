@@ -25,7 +25,7 @@ function HomePage() {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <main role="main" aria-labelledby="home-page-heading">
+    <main role="main" id="main-home-page" aria-labelledby="home-page-heading">
       <h1 id="home-page-heading" className="sr-only">
         Home Page
       </h1>

@@ -14,7 +14,7 @@ const CommentForm = ({ postID }) => {
   const handleInputChange = (e) => {
     setCommentText(e.target.value);
     const lineCount = (e.target.value.match(/\n/g) || []).length + 1;
-    e.target.rows = Math.max(lineCount, 5); // Ensure at least 5 rows
+    e.target.rows = Math.max(lineCount, 2); // Ensure at least 5 rows
   };
 
   const handleSubmit = (e) => {
@@ -51,7 +51,7 @@ const CommentForm = ({ postID }) => {
               <textarea
                 id="comment"
                 className="mt-1 p-2 w-full border-b-2 rounded-md"
-                rows="5"
+                rows="1"
                 value={commentText}
                 onChange={handleInputChange}
                 aria-label="Write your comment here"

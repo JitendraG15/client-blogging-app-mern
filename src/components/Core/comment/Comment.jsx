@@ -1,8 +1,13 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Modify from "./Modify";
+import { useNavigate } from 'react-router-dom';
+import { updateComment , deleteComment} from "../../../services/operations/comment";
+
 
 const Comment = ({ comment }) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { user } = useSelector((state) => state.profile);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
@@ -14,16 +19,18 @@ const Comment = ({ comment }) => {
     setIsPopupOpen(false);
   };
 
-  const handleModify = (commentId) => {
+  const handleModify = ({comment, content}) => {
     // Logic to modify the comment
+    dispatch(updateComment(comment.postID._id, comment._id, content, navigate));
+
     // Example: dispatch an action to update the comment
-    console.log(`Modify comment with ID: ${commentId}`);
+    // console.log(`Modify comment with ID: ${commentId}`); 
     setIsPopupOpen(false);
   };
 
   const handleDelete = (commentId) => {
     // Logic to delete the comment
-    // Example: dispatch an action to delete the comment
+    dispatch(deleteComment(commentId,  navigate));
     console.log(`Delete comment with ID: ${commentId}`);
     setIsPopupOpen(false);
   };
